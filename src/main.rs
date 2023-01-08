@@ -5,23 +5,28 @@ use rand::Rng;
 fn main() {
     println!("Guess a random number! ");
 
-    let secret_number = rand::thread_rng().gen_range(1..=100);
-    println!("Your secret number is: {secret_number}");
 
-    println!("Please input your guess number ");
+    loop {
+        let secret_number = rand::thread_rng().gen_range(1..=100);
+        println!("Your secret number is: {secret_number}");
 
-    let mut guess = String::new();
-    io::stdin()
-        .read_line(&mut guess)
-        .expect("Failed to read input");
+        
+            println!("Please input your guess number ");
 
-    let guess: u32 = guess.trim().parse().expect("Failed to parse, Please enter a Number");
+            let mut guess = String::new();
+            io::stdin()
+                .read_line(&mut guess)
+                .expect("Failed to read input");
 
-    println!("Your guess is: {guess}");
+            let guess: u32 = guess.trim().parse().expect("Failed to parse, Please enter a Number");
 
-    match guess.cmp(&secret_number) {
-        Ordering::Less => println!("This guess is less than the secret number"),
-        Ordering::Equal => println!("This guess is equal to the secret number"),
-        Ordering::Greater => println!("This guess is greater than the secret number"),
-    }
+            println!("Your guess is: {guess}");
+
+            match guess.cmp(&secret_number) {
+                Ordering::Less => println!("This guess is less than the secret number"),
+                Ordering::Equal => println!("This guess is equal to the secret number"),
+                Ordering::Greater => println!("This guess is greater than the secret number"),
+            }
+        }
+        
 }
